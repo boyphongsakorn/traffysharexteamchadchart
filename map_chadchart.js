@@ -1006,6 +1006,7 @@ async function getCategoryStat(_limit = 100) {
                 }
             },
             responsive: true,
+            aspectRatio: 1,
             plugins: {
                 legend: {
                     position: false,
@@ -1100,9 +1101,6 @@ async function getSubDistrictStat(_limit = 10) {
     if (_limit > 15) {
         _aspectRatio = 0.2
     }
-
-    console.log(_data)
-    console.log(_labels)
 
     const config = {
         type: 'bar',

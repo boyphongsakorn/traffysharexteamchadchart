@@ -1101,6 +1101,9 @@ async function getSubDistrictStat(_limit = 10) {
         _aspectRatio = 0.2
     }
 
+    console.log(_data)
+    console.log(_labels)
+
     const config = {
         type: 'bar',
         data: {

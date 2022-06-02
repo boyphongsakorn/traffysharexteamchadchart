@@ -169,14 +169,14 @@ async function searchPost(trendProblemtype=undefined) {
     
 
 
-    if (filterEndDate != null) {
+    /*if (filterEndDate != null) {
         console.log('1')
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
         url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         url_api_json = `${url_api_json}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         // console.log(`start=${filterStartDate}&end=${filterEndDate}`)
-    }
+    }*/
     // TODO: comment 
 
     if (filterStartDate != null && filterEndDate != null) {

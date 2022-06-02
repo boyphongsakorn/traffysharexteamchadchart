@@ -1,0 +1,142 @@
+
+https://share.traffy.in.th/* Optional: Makes the sample page fill the window.https://share.traffy.in.th/
+https://share.traffy.in.th/* @font-face {
+    font-family: MitrFont;
+    src: url(https://share.traffy.in.th/fonhttps://share.traffy.in.th/Mihttps://share.traffy.in.th/Mitr-Light.ttf);
+  }
+  @font-face {
+    font-family: MitrSemiBoldFont;
+    src: url(https://share.traffy.in.th/fonhttps://share.traffy.in.th/Mihttps://share.traffy.in.th/Mitr-SemiBold.ttf);
+  }https://share.traffy.in.th/
+
+  @font-face {
+    font-family: IBMPlexSansThaiFont;
+    src: url(https://share.traffy.in.th/fonhttps://share.traffy.in.th/IBMPlexSansThhttps://share.traffy.in.th/IBMPlexSansThai-Medium.ttf);
+  }
+  @font-face {
+    font-family: IBMPlexSansThaiSemiBoldFont;
+    src: url(https://share.traffy.in.th/fonhttps://share.traffy.in.th/IBMPlexSansThhttps://share.traffy.in.th/IBMPlexSansThai-SemiBold.ttf);
+  }
+
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-family: IBMPlexSansThaiFont;
+    color: #4D4D4D;
+  }
+
+#map{
+  height: 95%;
+  position:absolute;
+}
+#over{
+    position: absolute;
+}
+
+#tab-overlay-map {
+  margin: 1%;
+  background-color: aqua;
+}
+
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none!important;
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+  color:#FFFF;
+}
+
+.btn-primary.custom-btn {
+	background-color: #FFFF;
+  color: #201c51;
+	border-color: #201c51;
+}
+
+.text-style {
+  font-family: MitrFont;
+  color: #4D4D4D;
+}
+
+.dont-break-out {
+
+https://share.traffy.in.th/* These are technically the same, but use bothhttps://share.traffy.in.th/
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+https://share.traffy.in.th/* This is the dangerous one in WebKit, as it breaks things whereverhttps://share.traffy.in.th/
+  word-break: break-all;
+https://share.traffy.in.th/* Instead use this non-standard one:https://share.traffy.in.th/
+  word-break: break-word;
+
+https://share.traffy.in.th/* Adds a hyphen where the word breaks, if supported (No Blink)https://share.traffy.in.th/
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+}
+
+.badge-state-start {
+  background-color: transparent;
+  color: #ffb42c;
+  border: 1px solid #ffb42c;
+}
+
+.badge-state-inprogress {
+  background-color: transparent;
+  color: #0884dc;
+  border: 1px solid #0884dc;
+}
+
+.badge-state-finish {
+  background-color: transparent;
+  color: #58b42c;
+  border: 1px solid #58b42c;
+}
+
+
+.sign-state-start {
+  background-color: #f6b900;
+  color: #fff;
+https://share.traffy.in.th/* border: 1px solid #ffb42c;https://share.traffy.in.th/
+}
+
+.sign-state-inprogress {
+  background-color: #ed2010;
+  color: #fff;
+https://share.traffy.in.th/* border: 1px solid #0884dc;https://share.traffy.in.th/
+}
+
+.sign-state-finish {
+  background-color: #61d637;
+  color: #fff;
+https://share.traffy.in.th/* border: 1px solid #58b42c;https://share.traffy.in.th/
+}
+
+.sign-state-total {
+  background-color: #5e5e5e;
+  color: #fff;
+https://share.traffy.in.th/* border: 1px solid #f15f42;https://share.traffy.in.th/
+}
+
+.margin-stat-state {
+  margin-top: 4px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 4px;
+}
+
+.select-li-active {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+.hover-li-filter:hover {
+  color: #0d6efd;
+  text-decoration: underline;
+}

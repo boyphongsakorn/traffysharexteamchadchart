@@ -87,7 +87,7 @@
         <hr>
         <h6 class="offcanvas-title" id="offcanvasScrollingLabel">ค้นหาข้อมูล</h6>
         <div class="input-group" style="margin-bottom: 4px;">
-          <input class="form-control me-2" type="search" placeholder="ค้นหาข้อมูล ..." aria-label="ค้นหาข้อมูล ..." id="input_slide_search_text" onkeypress="var key=event.keyCode || event.which; if (key==13){ event.preventDefault(); searchPost(); }">
+          <input class="form-control me-2" type="search" placeholder="ค้นหาข้อมูล ..." aria-label="ค้นหาข้อมูล ..." id="input_slide_search_text" oninput="cluckSearchSlideBar()" onkeypress="var key=event.keyCode || event.which; if (key==13){ event.preventDefault(); searchPost(); }">
           <div class="input-group-append">
             <button class="btn btn-primary custom-btn" id="btn_search_slidebar" type="button" onclick="cluckSearchSlideBar()" style="-webkit-box-shadow: none; box-shadow: none;">ค้นหา</button>
           </div>

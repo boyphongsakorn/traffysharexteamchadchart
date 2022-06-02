@@ -198,7 +198,7 @@ async function searchPost(trendProblemtype=undefined) {
     if (filterState != null) {
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
         //url_geojson_hashtag =  `${url_geojson_hashtag}${_parameter_url_style}state=${filterState}`
-        if(filterDistrict == null && filterSubDistrict == null){
+        if(_parameter_url_style == '?'){
             if(filterState == "เสร็จสิ้น"){
                 url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson_complete.json`
             }else if(filterState == "รอรับเรื่อง"){
@@ -207,11 +207,11 @@ async function searchPost(trendProblemtype=undefined) {
                 url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson_send.json`
             }
         }else{
-            if(_parameter_url_style == "?"){
+            /*if(_parameter_url_style == "?"){
                 url_geojson_hashtag = `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}state=${filterState}`
-            }else{
+            }else{*/
                 url_geojson_hashtag = `${url_geojson_hashtag}${_parameter_url_style}state=${filterState}`
-            }
+            //}
             /*if(filterDistrict != null){
                 url_geojson_hashtag = url_geojson_hashtag+`&district=${filterDistrict}`
             }

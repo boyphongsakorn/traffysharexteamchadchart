@@ -982,6 +982,7 @@ async function getCategoryStat(_limit=100) {
     let chartStatus = Chart.getChart("categoryUnitStatChart"); // <canvas> id
     if (chartStatus != undefined) {
       chartStatus.destroy();
+      console.log('test')
     }
     new Chart(unitStatChart, {
         type: 'bar',

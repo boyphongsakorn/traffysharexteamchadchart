@@ -991,8 +991,8 @@ async function getCategoryStat(_limit=100) {
             datasets: [{
                 label: '',
                 data: _data,
-                backgroundColor: '#FFFFFF',
-                borderColor: '#FFFFFF',
+                backgroundColor: _color,
+                borderColor: _color,
                 borderWidth: 0
             }]
         },

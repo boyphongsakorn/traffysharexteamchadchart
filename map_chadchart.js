@@ -110,6 +110,8 @@ jQuery(document).ready(function($) {
         filterStartDate =  null
         filterEndDate = null
         console.log("clear")
+
+        searchPost()
     });
 });
 
@@ -183,8 +185,17 @@ async function searchPost(trendProblemtype=undefined) {
         console.log('2')
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
         url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
+        if(filterState != null){
+            url_geojson_hashtag = url_geojson_hashtag + `&state=${filterState}`
+        }
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
+        if(filterState != null){
+            csv_url_dowload = csv_url_dowload + `&state=${filterState}`
+        }
         url_api_json = `${url_api_json}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
+        if(filterState != null){
+            url_api_json = url_api_json + `&state=${filterState}`
+        }
         // console.log(`start=${filterStartDate}&end=${filterEndDate}`)
     }
 

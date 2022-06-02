@@ -131,7 +131,7 @@ async function searchPost(trendProblemtype=undefined) {
         // console.log("else trendProblemtype")
     }
 
-    if (text_search == "ประเภท:ทั้งหมด" && text_search == "" && filterDistrict == null && filterSubDistrict == null && filterStartDate == null && filterEndDate == null && filterState == null) {
+    if (text_search == "" && filterDistrict == null && filterSubDistrict == null && filterStartDate == null && filterEndDate == null && filterState == null) {
         url_geojson_hashtag = 'https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson.json'
     }
 

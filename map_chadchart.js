@@ -12,20 +12,20 @@ let markerClusterer = null
 let mapType = "marker"
 let filterDistrict = null
 let filterSubDistrict = null
-let filterStartDate =  null
+let filterStartDate = null
 let filterEndDate = null
 let filterState = null
 
 if (window.location.hostname != 'localhost') {
-   if (location.protocol !== 'https:') {
-       location.replace(`https:${location.href.substring(location.protocol.length)}`);
-   }
+    if (location.protocol !== 'https:') {
+        location.replace(`https:${location.href.substring(location.protocol.length)}`);
+    }
 }
 
 
 
 function initMap() {
-   
+
     dayjs.extend(window.dayjs_plugin_customParseFormat)
     dayjs.extend(window.dayjs_plugin_buddhistEra)
 
@@ -39,18 +39,18 @@ function initMap() {
         zoom: 6,
         center: { lat: 14.0772181, lng: 100.5976256 },
         mapTypeControl: false,
-      });
+    });
 
     heatmap = new google.maps.visualization.HeatmapLayer({
         map: map,
         radius: 21,
         opacity: 1,
-      });
-    
+    });
+
     // var infowindowMarker = new google.maps.InfoWindow();
     // let infowindow = new google.maps.InfoWindow();
 
- 
+
     //current location
     // if (navigator.geolocation) {
     //     navigator.geolocation.getCurrentPosition(function (position) {
@@ -85,29 +85,29 @@ function initMap() {
     getStatState()
     getCategoryStat()
     getSubDistrictStat()
-   
+
 }
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     $('#rangeDatepicker').daterangepicker({
         autoUpdateInput: false,
         locale: {
             cancelLabel: 'Clear'
         }
     });
-  
-    $('#rangeDatepicker').on('apply.daterangepicker', function(ev, picker) {
+
+    $('#rangeDatepicker').on('apply.daterangepicker', function (ev, picker) {
         $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
 
-        filterStartDate =  picker.startDate.format('YYYY-MM-DD')
+        filterStartDate = picker.startDate.format('YYYY-MM-DD')
         filterEndDate = picker.endDate.format('YYYY-MM-DD')
 
         searchPost()
     });
-  
-    $('#rangeDatepicker').on('cancel.daterangepicker', function(ev, picker) {
+
+    $('#rangeDatepicker').on('cancel.daterangepicker', function (ev, picker) {
         $(this).val('');
-        filterStartDate =  null
+        filterStartDate = null
         filterEndDate = null
         console.log("clear")
 
@@ -116,14 +116,14 @@ jQuery(document).ready(function($) {
 });
 
 
-async function searchPost(trendProblemtype=undefined) {
+async function searchPost(trendProblemtype = undefined) {
 
     let url_geojson_hashtag = `${base_url_api}/geojson`
     let csv_url_dowload = `${base_url_api}/download`
     let url_api_json = `${base_url_api}/search`
 
     // console.log(trendProblemtype, "---")
-    if (trendProblemtype == undefined){
+    if (trendProblemtype == undefined) {
         var text_search = document.getElementById("input_search_text").value.trim();
         // console.log("else searchbox")
     } else {
@@ -136,9 +136,9 @@ async function searchPost(trendProblemtype=undefined) {
     }
 
     if (text_search != "ประเภท:ทั้งหมด") {
-        if (text_search != ""){
+        if (text_search != "") {
             var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
-            url_geojson_hashtag =  `${url_geojson_hashtag}?text=${text_search}`
+            url_geojson_hashtag = `${url_geojson_hashtag}?text=${text_search}`
             csv_url_dowload = `${csv_url_dowload}?text=${text_search}`
             url_api_json = `${url_api_json}?text=${text_search}`
         }
@@ -150,13 +150,13 @@ async function searchPost(trendProblemtype=undefined) {
         url_geojson_hashtag = url_geojson_hashtag + _parameter_url_style + "district=" + filterDistrict
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}district=${filterDistrict}`
         url_api_json = `${url_api_json}${_parameter_url_style}district=${filterDistrict}`
-     
+
     }
 
     if (filterSubDistrict != null) {
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
         //url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}subdistrict=${filterSubDistrict}`
-        url_geojson_hashtag = url_geojson_hashtag+ _parameter_url_style + "subdistrict=" + filterSubDistrict
+        url_geojson_hashtag = url_geojson_hashtag + _parameter_url_style + "subdistrict=" + filterSubDistrict
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}subdistrict=${filterSubDistrict}`
         url_api_json = `${url_api_json}${_parameter_url_style}subdistrict=${filterSubDistrict}`
     }
@@ -175,21 +175,21 @@ async function searchPost(trendProblemtype=undefined) {
         console.log('2')
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
         //if(_parameter_url_style == '&'){
-            url_geojson_hashtag = url_geojson_hashtag+`${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
+        url_geojson_hashtag = url_geojson_hashtag + `${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         //}else{
         //    url_geojson_hashtag = `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         //}
-        if(filterState != null ){
+        if (filterState != null) {
             url_geojson_hashtag = url_geojson_hashtag + `&state=${filterState}`
         }/*else{
             url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         }*/
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
-        if(filterState != null){
+        if (filterState != null) {
             csv_url_dowload = csv_url_dowload + `&state=${filterState}`
         }
         url_api_json = `${url_api_json}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
-        if(filterState != null){
+        if (filterState != null) {
             url_api_json = url_api_json + `&state=${filterState}`
         }
         // console.log(`start=${filterStartDate}&end=${filterEndDate}`)
@@ -198,19 +198,19 @@ async function searchPost(trendProblemtype=undefined) {
     if (filterState != null) {
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
         //url_geojson_hashtag =  `${url_geojson_hashtag}${_parameter_url_style}state=${filterState}`
-        if(_parameter_url_style == '?'){
-            if(filterState == "เสร็จสิ้น"){
+        if (_parameter_url_style == '?') {
+            if (filterState == "เสร็จสิ้น") {
                 url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson_complete.json`
-            }else if(filterState == "รอรับเรื่อง"){
+            } else if (filterState == "รอรับเรื่อง") {
                 url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson_wait.json`
-            }else if(filterState == "ส่งเรื่องแล้ว"){
+            } else if (filterState == "ส่งเรื่องแล้ว") {
                 url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson_send.json`
             }
-        }else{
+        } else {
             /*if(_parameter_url_style == "?"){
                 url_geojson_hashtag = `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}state=${filterState}`
             }else{*/
-                url_geojson_hashtag = `${url_geojson_hashtag}${_parameter_url_style}state=${filterState}`
+            url_geojson_hashtag = `${url_geojson_hashtag}${_parameter_url_style}state=${filterState}`
             //}
             /*if(filterDistrict != null){
                 url_geojson_hashtag = url_geojson_hashtag+`&district=${filterDistrict}`
@@ -226,10 +226,10 @@ async function searchPost(trendProblemtype=undefined) {
     // console.log(filterDistrict, filterSubDistrict , "---")
 
 
-    let responseAPI =  await axios({
-                        method: 'get',
-                        url:  url_geojson_hashtag,
-                    })
+    let responseAPI = await axios({
+        method: 'get',
+        url: url_geojson_hashtag,
+    })
 
 
     var dataResultesFeatures = await responseAPI.data.features
@@ -238,7 +238,7 @@ async function searchPost(trendProblemtype=undefined) {
     if (mapType == "marker" || mapType == "clustering") {
         // console.log("marker")
         setMarkerMap(dataResultesFeatures)
-    } else if (mapType == "heatmap"){
+    } else if (mapType == "heatmap") {
         // console.log("heatmap")
         setHeatMap(dataResultesFeatures)
     }
@@ -246,65 +246,65 @@ async function searchPost(trendProblemtype=undefined) {
 
     //ใส่ data เข้าตารางแสดงการค้นหา    
     let text_results_search = `ผลลัพธ์ ${responseAPI.data.total} รายการ  <a href="${csv_url_dowload}" class="badge rounded-pill" style="background-color: #201c51;">csv</a>`
-     + ` <a href="${url_api_json}" class="badge rounded-pill" style="background-color: #201c51;" target="_blank">json</a>`
-     + ` <a href="${url_traffy_share_api_doc}" target="_blank"> <img src="https://share.traffy.in.th/img/info-circle.svg" alt=""></a>`
+        + ` <a href="${url_api_json}" class="badge rounded-pill" style="background-color: #201c51;" target="_blank">json</a>`
+        + ` <a href="${url_traffy_share_api_doc}" target="_blank"> <img src="https://share.traffy.in.th/img/info-circle.svg" alt=""></a>`
 
 
     // <p><a href="#" class="badge bg-primary">csv</a> <a href="#" class="badge bg-primary">json</a> </p>
 
     textTrTable = ''
     var latlngbounds = new google.maps.LatLngBounds();
-    
+
     let count_tr = 0
-    dataResultesFeatures.forEach(function(v , index) {
+    dataResultesFeatures.forEach(function (v, index) {
         var data = v.properties
         latlngbounds.extend(new google.maps.LatLng(v.geometry.coordinates[1], v.geometry.coordinates[0]));
-        
 
-    // textTrTable = textTrTable + `<tr onclick="document.querySelector('.btn-close.text-reset').click(); clickTrListData(this, '${v.geometry.coordinates}')">
-    //     <td><img src="${data.photo_url}" alt="" width="50"/></td>
-    //     <td><div style="font-weight: bold; display: inline;">จุดเสี่ยง${data.type}: </div>${data.description}<br/>
-    //     <div style="font-weight: bold; display: inline;">เมื่อ: </div>${converFormatTimestamp(data.timestamp)}<br/>
-    //     <div style="font-weight: bold; display: inline;">ตำแหน่ง: </div>${data.address}<br/></td>
-    //     </tr>`
-    // })
 
-    let txt_description = data.description
-    let count_char_description = txt_description.length
-    if (count_char_description > 200){
-        txt_description = txt_description.slice(0, 199) + `<div style="font-weight: bold; display: inline; font-size: 14px;" class="text-style">... อ่านเพิ่มเติม</div>`
-    }
+        // textTrTable = textTrTable + `<tr onclick="document.querySelector('.btn-close.text-reset').click(); clickTrListData(this, '${v.geometry.coordinates}')">
+        //     <td><img src="${data.photo_url}" alt="" width="50"/></td>
+        //     <td><div style="font-weight: bold; display: inline;">จุดเสี่ยง${data.type}: </div>${data.description}<br/>
+        //     <div style="font-weight: bold; display: inline;">เมื่อ: </div>${converFormatTimestamp(data.timestamp)}<br/>
+        //     <div style="font-weight: bold; display: inline;">ตำแหน่ง: </div>${data.address}<br/></td>
+        //     </tr>`
+        // })
 
-    var path_icon_info_type =  getSrcIconInfoProblemType(data.type)
+        let txt_description = data.description
+        let count_char_description = txt_description.length
+        if (count_char_description > 200) {
+            txt_description = txt_description.slice(0, 199) + `<div style="font-weight: bold; display: inline; font-size: 14px;" class="text-style">... อ่านเพิ่มเติม</div>`
+        }
 
-    let click_tr_hide_offcanvas = "document.querySelector('.btn-close.text-reset').click();"
-    if (isDesktopDevice()) {
-        click_tr_hide_offcanvas = ""
-    }
+        var path_icon_info_type = getSrcIconInfoProblemType(data.type)
 
-    let photo_url = getURLimageThumbnail(data.photo_url).thumbnail
+        let click_tr_hide_offcanvas = "document.querySelector('.btn-close.text-reset').click();"
+        if (isDesktopDevice()) {
+            click_tr_hide_offcanvas = ""
+        }
 
-    txt_description = txt_description.replace("://", ":// ");
+        let photo_url = getURLimageThumbnail(data.photo_url).thumbnail
 
-    let badge_state = styleBadge(data.state)
+        txt_description = txt_description.replace("://", ":// ");
 
-    if (count_tr < 50){
-        textTrTable = textTrTable + `<tr onclick="${click_tr_hide_offcanvas} clickTrListData(this, '${v.geometry.coordinates}')">
+        let badge_state = styleBadge(data.state)
+
+        if (count_tr < 50) {
+            textTrTable = textTrTable + `<tr onclick="${click_tr_hide_offcanvas} clickTrListData(this, '${v.geometry.coordinates}')">
             <td><img src="${photo_url}" alt="" width="100%" class="rounded mx-auto d-block"/></td>
             <td><div style="font-weight: bold; display: inline; font-size: 18px;" class="text-style">จุดเสี่ยง: ${data.type} <img src="${path_icon_info_type}" class="float-end" width="22"> ${badge_state}</div>
             <br><div style="font-size: 14px;" class="text-style dont-break-out">${txt_description}</div>
             <div style="font-weight: bold; display: inline; font-size: 16px;" class="text-style">เมื่อ: ${converFormatTimestamp(data.timestamp)}</div><br/>
             <div style="font-weight: bold; font-size: 14px;" class="text-style">${data.address}<br/></div></td>
             </tr>`
-    }
-    count_tr += 1
+        }
+        count_tr += 1
 
     })// end 
-    
-    document.getElementById('count-results-search').innerHTML = text_results_search
-    document.getElementById('tr-results-search').innerHTML= textTrTable
 
-    if (markers.length != 0){
+    document.getElementById('count-results-search').innerHTML = text_results_search
+    document.getElementById('tr-results-search').innerHTML = textTrTable
+
+    if (markers.length != 0) {
         map.setCenter(latlngbounds.getCenter());
         map.fitBounds(latlngbounds);
         // map.setZoom(12)
@@ -314,7 +314,7 @@ async function searchPost(trendProblemtype=undefined) {
 
 
 function setMarkerMap(dataResultesFeatures) {
-       // clear markers
+    // clear markers
     clearMarkerMap()
 
     markers = []
@@ -323,7 +323,7 @@ function setMarkerMap(dataResultesFeatures) {
     var marker, i;
 
     infowindow = new google.maps.InfoWindow();
-    dataResultesFeatures.forEach(function(v , index) {
+    dataResultesFeatures.forEach(function (v, index) {
 
         var data = v.properties
 
@@ -333,7 +333,7 @@ function setMarkerMap(dataResultesFeatures) {
         var icon = {
             url: path_icon_marker, // url
             scaledSize: new google.maps.Size(28, 40), // scaled size
-            origin: new google.maps.Point(0,0), // origin
+            origin: new google.maps.Point(0, 0), // origin
             anchor: new google.maps.Point(0, 0) // anchor
         };
 
@@ -342,23 +342,23 @@ function setMarkerMap(dataResultesFeatures) {
             map: map,
             icon: icon,
         });
-    
+
         markers.push(marker);
-        
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
                 if (infowindow) {
                     infowindow.close();
                 }
 
-                var info_content =  infoWindowContent(data)
+                var info_content = infoWindowContent(data)
 
                 infowindow.setContent(info_content);
 
-                infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
+                infowindow.setOptions({ pixelOffset: new google.maps.Size(0, -30) });
                 infowindow.open(map, marker);
             }
-            })(marker, i));
+        })(marker, i));
 
 
     })
@@ -366,7 +366,7 @@ function setMarkerMap(dataResultesFeatures) {
     if (mapType == "clustering") {
         markerClusterer = new MarkerClusterer(map, markers, {
             imagePath:
-              "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+                "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
         });
     }
 
@@ -377,7 +377,7 @@ function setHeatMap(dataResultesFeatures) {
     clearMarkerMap()
 
     let dataHeatMap = []
-    dataResultesFeatures.forEach(function(v , index) {
+    dataResultesFeatures.forEach(function (v, index) {
         dataHeatMap.push(new google.maps.LatLng(v.geometry.coordinates[1], v.geometry.coordinates[0]))
     })
 
@@ -385,8 +385,8 @@ function setHeatMap(dataResultesFeatures) {
     heatmap.setData(pointHeatMap)
 }
 
-function clickMarkerModal(i, data){
-    var myModal = new bootstrap.Modal(document.getElementById("infoModal"), {}); 
+function clickMarkerModal(i, data) {
+    var myModal = new bootstrap.Modal(document.getElementById("infoModal"), {});
     document.getElementById("infoModalLabel").innerHTML = data.description
     document.getElementById("modal-body-img").innerHTML = `<img src="${data.photo_url}" alt='photo' width='250'></img>`
     myModal.show();
@@ -394,16 +394,16 @@ function clickMarkerModal(i, data){
 
 async function topProblemtype(event) {
     let url_hashtag_trend = `${base_url_api}/trend`
-    let responseAPI =  await axios({
+    let responseAPI = await axios({
         method: 'get',
-        url:  url_hashtag_trend,
+        url: url_hashtag_trend,
     })
 
     text = ''
-    responseAPI.data.results.forEach(function(v , index) {
+    responseAPI.data.results.forEach(function (v, index) {
         text = text + `<a href="#" class="badge rounded-pill" style="background-color: #f15928;" onclick="clickHashtagBadge(this)" id="span-hashtag-trend-${index}">${v.problemtype_name}</a> `
     });
-    document.getElementById('divTopproblemtype').innerHTML= text
+    document.getElementById('divTopproblemtype').innerHTML = text
     // hashtagTrend = responseAPI.data.results
 }
 
@@ -427,9 +427,9 @@ async function topProblemtype(event) {
 
 async function allProblemtype(event) {
     let url_hashtag_trend = `${base_url_api}/trend-all`
-    let responseAPI =  await axios({
+    let responseAPI = await axios({
         method: 'get',
-        url:  url_hashtag_trend,
+        url: url_hashtag_trend,
     })
 
     let _problems = responseAPI.data.results
@@ -438,17 +438,17 @@ async function allProblemtype(event) {
             p_count: "91",
             problemtype_name: "ทั้งหมด"
         },
-        
+
     )
 
     text = ''
-    responseAPI.data.results.forEach(function(v , index) {
+    responseAPI.data.results.forEach(function (v, index) {
         // container.append('<div>' + count + '</div>');
         var prbt_color = getColorProblemType(v.problemtype_name)
         text = text + `<a href="#" class="badge rounded-pill" style="background-color: ${prbt_color}; font-size: 1rem; margin-top:4px;" onclick="clickHashtagBadge(this)" id="span-hashtag-trend-${index}">${v.problemtype_name}</a> `
     });
     // console.log(responseAPI)
-    document.getElementById('divAllProblemtype').innerHTML= text
+    document.getElementById('divAllProblemtype').innerHTML = text
 }
 
 
@@ -475,9 +475,9 @@ function clickTrListData(event, _latlng) {
 }
 
 
-function clickHashtagBadge(event){
+function clickHashtagBadge(event) {
 
-    var queryproblemtypeTrend  = "ประเภท:" + event.innerHTML
+    var queryproblemtypeTrend = "ประเภท:" + event.innerHTML
     document.getElementById("input_search_text").value = queryproblemtypeTrend;
     document.getElementById("input_slide_search_text").value = queryproblemtypeTrend;
 
@@ -491,23 +491,23 @@ async function cluckSearchSlideBar() {
     await searchPost(text_search)
 }
 
-window.onload = function() {
+window.onload = function () {
     let input_search_text = document.getElementById("input_search_text")
     let input_slide_search_text = document.getElementById("input_slide_search_text")
 
-    input_search_text.addEventListener("keyup",function(event) {
+    input_search_text.addEventListener("keyup", function (event) {
         if (event.key === 'Enter') {
             event.preventDefault();
-            setTimeout(function(){
+            setTimeout(function () {
                 document.getElementById("btn_search_hashtag").click();
             }, 250);
         }
-      });
+    });
 
-    input_slide_search_text.addEventListener("keyup",function(event) {
+    input_slide_search_text.addEventListener("keyup", function (event) {
         if (event.key === 'Enter') {
             event.preventDefault();
-            setTimeout(function(){
+            setTimeout(function () {
                 document.getElementById("btn_search_slidebar").click();
             }, 250)
         }
@@ -515,52 +515,52 @@ window.onload = function() {
 }//End window.onload 
 
 
-function converFormatTimestamp(_timestamp){
-    let date_and_time = dayjs(_timestamp, "YYYY-MM-DD+h:mm").add(7, 'hour').locale('th').format('D MMM BB HH:mm') 
+function converFormatTimestamp(_timestamp) {
+    let date_and_time = dayjs(_timestamp, "YYYY-MM-DD+h:mm").add(7, 'hour').locale('th').format('D MMM BB HH:mm')
     return `${date_and_time} น.`
 }
 
 
-function getSrcIconInfoProblemType(_type_name){
-    var path_icon_info_type =  "https://share.traffy.in.th/img/icon-marker/อื่นๆ_กลม.png"
-    switch(_type_name) {
+function getSrcIconInfoProblemType(_type_name) {
+    var path_icon_info_type = "https://share.traffy.in.th/img/icon-marker/อื่นๆ_กลม.png"
+    switch (_type_name) {
         case "จราจร":
-            path_icon_info_type =  "https://share.traffy.in.th/img/icon-marker/จราจร_กลม.png"
-          break;
+            path_icon_info_type = "https://share.traffy.in.th/img/icon-marker/จราจร_กลม.png"
+            break;
         case "ขยะ":
-            path_icon_info_type =  "https://share.traffy.in.th/img/icon-marker/ขยะ_กลม.png"
-          break;
+            path_icon_info_type = "https://share.traffy.in.th/img/icon-marker/ขยะ_กลม.png"
+            break;
         case "น้ำท่วม":
-            path_icon_info_type =  "https://share.traffy.in.th/img/icon-marker/น้ำท่วม_กลม.png"
-          break;
+            path_icon_info_type = "https://share.traffy.in.th/img/icon-marker/น้ำท่วม_กลม.png"
+            break;
         case "ความปลอดภัย":
-            path_icon_info_type =  "https://share.traffy.in.th/img/icon-marker/ความปลอดภัย_กลม.png"
+            path_icon_info_type = "https://share.traffy.in.th/img/icon-marker/ความปลอดภัย_กลม.png"
             break;
         case "ทางเท้า":
-            path_icon_info_type =  "https://share.traffy.in.th/img/icon-marker/ทางเท้า_กลม.png"
+            path_icon_info_type = "https://share.traffy.in.th/img/icon-marker/ทางเท้า_กลม.png"
             break;
         case "ป้ายหาเสียง":
-            path_icon_info_type =  "https://share.traffy.in.th/img/icon-marker/ป้ายหาเสียง_กลม.png"
+            path_icon_info_type = "https://share.traffy.in.th/img/icon-marker/ป้ายหาเสียง_กลม.png"
             break;
         default:
-          //อื่นๆ
-          path_icon_info_type =  "https://share.traffy.in.th/img/icon-marker/อื่นๆ_กลม.png"
+            //อื่นๆ
+            path_icon_info_type = "https://share.traffy.in.th/img/icon-marker/อื่นๆ_กลม.png"
     }
     return path_icon_info_type
 }
 
-function getSrcIconMarkerProblemType(_type_name){
+function getSrcIconMarkerProblemType(_type_name) {
     var path_icon_marker = "https://share.traffy.in.th/img/icon-marker/อื่นๆ_จุด@2x.png"
-    switch(_type_name) {
+    switch (_type_name) {
         case "จราจร":
             path_icon_marker = "https://share.traffy.in.th/img/icon-marker/จราจร_จุด@2x.png";
-          break;
+            break;
         case "ขยะ":
             path_icon_marker = "https://share.traffy.in.th/img/icon-marker/ขยะ_จุด@2x.png";
-          break;
+            break;
         case "น้ำท่วม":
             path_icon_marker = "https://share.traffy.in.th/img/icon-marker/น้ำท่วม_จุด@2x.png";
-          break;
+            break;
         case "ความปลอดภัย":
             path_icon_marker = "https://share.traffy.in.th/img/icon-marker/ความปลอดภัย_จุด@2x.png";
             break;
@@ -571,26 +571,26 @@ function getSrcIconMarkerProblemType(_type_name){
             path_icon_marker = "https://share.traffy.in.th/img/icon-marker/ป้ายหาเสียง_จุด.png";
             break;
         default:
-          //อื่นๆ
-          path_icon_marker = "https://share.traffy.in.th/img/icon-marker/อื่นๆ_จุด@2x.png";
+            //อื่นๆ
+            path_icon_marker = "https://share.traffy.in.th/img/icon-marker/อื่นๆ_จุด@2x.png";
     }
     return path_icon_marker
 }
 
 
 function getColorProblemType(_type_name) {
-    
+
     var color_problem_type = "#b720b1"
-    switch(_type_name) {
+    switch (_type_name) {
         case "จราจร":
             color_problem_type = "#f0a311";
-          break;
+            break;
         case "ขยะ":
             color_problem_type = "#5fd488";
-          break;
+            break;
         case "น้ำท่วม":
             color_problem_type = "#5fa9d4";
-          break;
+            break;
         case "ความปลอดภัย":
             color_problem_type = "#9d1b48";
             break;
@@ -607,15 +607,15 @@ function getColorProblemType(_type_name) {
             color_problem_type = "#444aed";
             break;
         default:
-          //อื่นๆ
-          color_problem_type = "#b720b1";
+            //อื่นๆ
+            color_problem_type = "#b720b1";
     }
     return color_problem_type
-    
+
 }
 
 function selectMapTypes(selectObject) {
-    var _map_type = selectObject.value;  
+    var _map_type = selectObject.value;
     // console.log(value);
 
     switch (_map_type) {
@@ -631,7 +631,7 @@ function selectMapTypes(selectObject) {
             map.data.setMap(map);
             searchPost()
             break;
-    
+
         default:
             //marker
             mapType = "marker"
@@ -644,7 +644,7 @@ function selectMapTypes(selectObject) {
 }
 
 function clearMarkerMap() {
-    for ( i = 0;  i < markers.length; i++) {
+    for (i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
     }
     if (markerClusterer != null) {
@@ -658,9 +658,9 @@ function isDesktopDevice() {
 
 async function getAllDistrict() {
     let _url = `${url_reverse_geo}/?action=list_district&province_selected=กรุงเทพมหานคร&limit=0`
-    let responseAPI =  await axios({
+    let responseAPI = await axios({
         method: 'get',
-        url:  _url,
+        url: _url,
     })
 
     let dataDistricts = await responseAPI.data.results
@@ -668,9 +668,9 @@ async function getAllDistrict() {
 
 
     dataDistricts.forEach(_name => {
-        _selecter = _selecter  + `<option value="${_name.name}">${_name.name}</option>`
+        _selecter = _selecter + `<option value="${_name.name}">${_name.name}</option>`
     });
-    document.getElementById('select-district').innerHTML= _selecter
+    document.getElementById('select-district').innerHTML = _selecter
 
 }
 
@@ -683,27 +683,27 @@ async function selectChangeDistrict(selectObject) {
 
     var e = document.getElementById("select-district");
     var selectDistrict = e.options[e.selectedIndex].text;
-    
+
 
     if (_district == 'ทั้งหมด') {
-        document.getElementById('divSubDistrict').style.display="none"
+        document.getElementById('divSubDistrict').style.display = "none"
         //ถ้าเขตเป็น all ให้แสดงแขวงทั้งหมดไม่ต้อนค้นหา
         filterSubDistrict = null
         filterDistrict = null
     } else {
-        document.getElementById('divSubDistrict').style.display="block"
+        document.getElementById('divSubDistrict').style.display = "block"
         let _url = `${url_reverse_geo}/?action=list_subdistrict&district_selected=${_district}&province_selected=กรุงเทพมหานคร&limit=0`
-        let responseAPI =  await axios({
+        let responseAPI = await axios({
             method: 'get',
-            url:  _url,
+            url: _url,
         })
         let dataDistricts = await responseAPI.data.results
         let _selecter = '<option selected value="ทั้งหมด">ทั้งหมด</option>'
 
         dataDistricts.forEach(_name => {
-            _selecter = _selecter  + `<option value="${_name.name}">${_name.name}</option>`
+            _selecter = _selecter + `<option value="${_name.name}">${_name.name}</option>`
         });
-        document.getElementById('select-subdistrict').innerHTML= _selecter
+        document.getElementById('select-subdistrict').innerHTML = _selecter
 
 
         filterDistrict = selectDistrict
@@ -719,7 +719,7 @@ function selectChangeSubDistrict(selectObject) {
     // var selectSubDistrict = e.options[e.selectedIndex].text;
     var selectSubDistrict = selectObject.value
     // console.log(selectSubDistrict, "---")
-    if(selectSubDistrict == 'ทั้งหมด'){
+    if (selectSubDistrict == 'ทั้งหมด') {
         //ถ้าแขวงเป็น all ให้แสดงแขวงทั้งหมดไม่ต้อนค้นหา
         filterSubDistrict = null
     } else {
@@ -745,7 +745,7 @@ function clearSearch() {
 
 
 function getURLimageThumbnail(photo_url) {
-   
+
     try {
         let image_name = photo_url.split("/")[6].split(".")[0]
         let image_directory_date = photo_url.split("/")[5]
@@ -786,13 +786,13 @@ function styleBadge(str_state) {
             <img src="https://share.traffy.in.th/img/icon-state-finish.png" class="float-start" width="9" style="margin-right: 4px;">
             ${str_state}</span>`
             break;
-    
+
         default:
             badge_state = '';
     }
 
     return badge_state
-    
+
 }
 
 function styleBadgeInfoWindows(str_state) {
@@ -815,13 +815,13 @@ function styleBadgeInfoWindows(str_state) {
             <img src="https://share.traffy.in.th/img/icon-state-finish.png" class="float-start" width="9" style="margin-right: 4px;">
             ${str_state}</span>`
             break;
-    
+
         default:
             badge_state = '';
     }
 
     return badge_state
-    
+
 }//End styleBadgeInfoWindows
 
 // selectMapTypes
@@ -859,10 +859,10 @@ function signSelectState(_str_state) {
 
 
 function infoWindowContent(data) {
-    
+
     let content = ''
     let photo_url = getURLimageThumbnail(data.photo_url).thumbnail
-    var path_icon_info_type =  getSrcIconInfoProblemType(data.type)
+    var path_icon_info_type = getSrcIconInfoProblemType(data.type)
     var _badge_state = styleBadgeInfoWindows(data.state)
 
     if (data.state == "รอรับเรื่อง") {
@@ -880,8 +880,8 @@ function infoWindowContent(data) {
         `
     } else {
         let after_photo_url = `https://share.traffy.in.th/img/logo-teamchadchart-360.jpg`
-        
-        if(data.after_photo != '') {    
+
+        if (data.after_photo != '') {
             after_photo_url = getURLimageThumbnail(data.after_photo).thumbnail
             console.log(after_photo_url)
         }
@@ -918,18 +918,18 @@ function infoWindowContent(data) {
 
 async function getStatState() {
     let _url = `${base_url_api}/sum_state?state=start,inprogress,finish`
-    let responseAPI =  await axios({
+    let responseAPI = await axios({
         method: 'get',
-        url:  _url,
+        url: _url,
     })
 
     _stat = responseAPI.data
 
-    document.getElementById('stat-start').innerHTML= _stat.start
-    document.getElementById('stat-inprogress').innerHTML= _stat.inprogress
-    document.getElementById('stat-finish').innerHTML= _stat.finish
-    document.getElementById('stat-total').innerHTML= _stat.total
-   
+    document.getElementById('stat-start').innerHTML = _stat.start
+    document.getElementById('stat-inprogress').innerHTML = _stat.inprogress
+    document.getElementById('stat-finish').innerHTML = _stat.finish
+    document.getElementById('stat-total').innerHTML = _stat.total
+
 }// End getStatState
 
 
@@ -937,8 +937,8 @@ function clickLiCategoryUnitStat(_type) {
     let _ul = document.getElementById("ul-category");
     let listItems = _ul.querySelectorAll('li');
 
-    for(li of listItems){
-        if(li.value != _type){
+    for (li of listItems) {
+        if (li.value != _type) {
             li.classList.remove("select-li-active");
         } else {
             li.classList.add("select-li-active");
@@ -957,10 +957,10 @@ function clickLiCategoryUnitStat(_type) {
     getCategoryStat(limit)
 }
 
-async function getCategoryStat(_limit=100) {
-    let responseAPI =  await axios({
+async function getCategoryStat(_limit = 100) {
+    let responseAPI = await axios({
         method: 'get',
-        url:  `https://anywhere.pwisetthon.com/${base_url_api}/trend-all?limit=${_limit}`,
+        url: `https://anywhere.pwisetthon.com/${base_url_api}/trend-all?limit=${_limit}`,
     })
     let dataCategoryStat = await responseAPI.data
 
@@ -969,8 +969,8 @@ async function getCategoryStat(_limit=100) {
     let _labels = []
     let _data = []
     let _color = []
-    
-    dataCategoryStat.results = dataCategoryStat.results.sort((a,b) => b['p_count'] - a['p_count']);
+
+    dataCategoryStat.results = dataCategoryStat.results.sort((a, b) => b['p_count'] - a['p_count']);
 
     dataCategoryStat.results.forEach(i => {
         _data.push(i.p_count)
@@ -981,7 +981,7 @@ async function getCategoryStat(_limit=100) {
     let unitStatChart = document.getElementById('categoryUnitStatChart').getContext('2d');
     let chartStatus = Chart.getChart("categoryUnitStatChart"); // <canvas> id
     if (chartStatus != undefined) {
-      chartStatus.destroy();
+        chartStatus.destroy();
     }
 
     const config = {
@@ -997,18 +997,18 @@ async function getCategoryStat(_limit=100) {
             }]
         },
         options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'top',
-            },
-            title: {
-              display: true,
-              text: 'Chart.js Bar Chart'
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Bar Chart'
+                }
             }
-          }
         },
-      };
+    };
 
     new Chart(unitStatChart, config);
 
@@ -1040,8 +1040,8 @@ function clickLiSubDistrict(_type) {
     let _ul = document.getElementById("ul-province");
     let listItems = _ul.querySelectorAll('li');
 
-    for(li of listItems){
-        if(li.value != _type){
+    for (li of listItems) {
+        if (li.value != _type) {
             li.classList.remove("select-li-active");
         } else {
             li.classList.add("select-li-active");
@@ -1064,11 +1064,11 @@ function clickLiSubDistrict(_type) {
 }
 
 
-async function getSubDistrictStat(_limit=10) {
+async function getSubDistrictStat(_limit = 10) {
 
-    let responseAPI =  await axios({
+    let responseAPI = await axios({
         method: 'get',
-        url:  `${base_url_api}/subdistrict-stat?limit=${_limit}`,
+        url: `${base_url_api}/subdistrict-stat?limit=${_limit}`,
     })
     let dataStat = await responseAPI.data
 
@@ -1082,10 +1082,10 @@ async function getSubDistrictStat(_limit=10) {
 
 
     let unitStatChart = document.getElementById('subDistrictStatChart').getContext('2d');
-    
+
     let chartStatus = Chart.getChart("subDistrictStatChart"); // <canvas> id
     if (chartStatus != undefined) {
-      chartStatus.destroy();
+        chartStatus.destroy();
     }
 
     let _aspectRatio = 1
@@ -1095,7 +1095,7 @@ async function getSubDistrictStat(_limit=10) {
 
     const config = {
         type: 'bar',
-                data: {
+        data: {
             labels: _labels,
             datasets: [{
                 label: '',
@@ -1106,27 +1106,27 @@ async function getSubDistrictStat(_limit=10) {
             }]
         },
         options: {
-          indexAxis: 'y',
-          // Elements options apply to all of the options unless overridden in a dataset
-          // In this case, we are setting the border of each horizontal bar to be 2px wide
-          elements: {
-            bar: {
-              borderWidth: 2,
-            }
-          },
-          responsive: true,
-          aspectRatio: _aspectRatio, 
-          plugins: {
-            legend: {
-              position:  false,
+            indexAxis: 'y',
+            // Elements options apply to all of the options unless overridden in a dataset
+            // In this case, we are setting the border of each horizontal bar to be 2px wide
+            elements: {
+                bar: {
+                    borderWidth: 2,
+                }
             },
-            title: {
-              display: false,
-              text: 'Chart.js Horizontal Bar Chart'
+            responsive: true,
+            aspectRatio: _aspectRatio,
+            plugins: {
+                legend: {
+                    position: false,
+                },
+                title: {
+                    display: false,
+                    text: 'Chart.js Horizontal Bar Chart'
+                }
             }
-          }
         },
-      };
+    };
 
     new Chart(unitStatChart, config)
 

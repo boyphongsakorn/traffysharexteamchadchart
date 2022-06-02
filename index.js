@@ -12,7 +12,7 @@ fetch('https://share.traffy.in.th/js/map_chadchart.js')
 fetch('https://share.traffy.in.th/css/style_chadchart.css')
 .then(res => res.text())
     .then(text => {
-        //change in text from .. to https://share.traffy.in.th/
-        text = text.replace(/..\//g, 'https://share.traffy.in.th/');
+        //change in text from ../fonts/ to https://share.traffy.in.th/fonts/
+        text = text.replace(/\.\.\/fonts\//g, 'https://share.traffy.in.th/fonts/');
         fs.writeFileSync('style_chadchart.css', text);
     })

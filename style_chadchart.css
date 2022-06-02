@@ -1,21 +1,21 @@
 
-https://share.traffy.in.th/* Optional: Makes the sample page fill the window.https://share.traffy.in.th/
-https://share.traffy.in.th/* @font-face {
+  /* Optional: Makes the sample page fill the window. */
+  /* @font-face {
     font-family: MitrFont;
-    src: url(https://share.traffy.in.th/fonhttps://share.traffy.in.th/Mihttps://share.traffy.in.th/Mitr-Light.ttf);
+    src: url(https://share.traffy.in.th/fonts/Mitr/Mitr-Light.ttf);
   }
   @font-face {
     font-family: MitrSemiBoldFont;
-    src: url(https://share.traffy.in.th/fonhttps://share.traffy.in.th/Mihttps://share.traffy.in.th/Mitr-SemiBold.ttf);
-  }https://share.traffy.in.th/
+    src: url(https://share.traffy.in.th/fonts/Mitr/Mitr-SemiBold.ttf);
+  } */
 
   @font-face {
     font-family: IBMPlexSansThaiFont;
-    src: url(https://share.traffy.in.th/fonhttps://share.traffy.in.th/IBMPlexSansThhttps://share.traffy.in.th/IBMPlexSansThai-Medium.ttf);
+    src: url(https://share.traffy.in.th/fonts/IBMPlexSansThai/IBMPlexSansThai-Medium.ttf);
   }
   @font-face {
     font-family: IBMPlexSansThaiSemiBoldFont;
-    src: url(https://share.traffy.in.th/fonhttps://share.traffy.in.th/IBMPlexSansThhttps://share.traffy.in.th/IBMPlexSansThai-SemiBold.ttf);
+    src: url(https://share.traffy.in.th/fonts/IBMPlexSansThai/IBMPlexSansThai-SemiBold.ttf);
   }
 
   html,
@@ -63,17 +63,17 @@ a:hover, a:visited, a:link, a:active {
 
 .dont-break-out {
 
-https://share.traffy.in.th/* These are technically the same, but use bothhttps://share.traffy.in.th/
+  /* These are technically the same, but use both */
   overflow-wrap: break-word;
   word-wrap: break-word;
 
   -ms-word-break: break-all;
-https://share.traffy.in.th/* This is the dangerous one in WebKit, as it breaks things whereverhttps://share.traffy.in.th/
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
   word-break: break-all;
-https://share.traffy.in.th/* Instead use this non-standard one:https://share.traffy.in.th/
+  /* Instead use this non-standard one: */
   word-break: break-word;
 
-https://share.traffy.in.th/* Adds a hyphen where the word breaks, if supported (No Blink)https://share.traffy.in.th/
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
   -ms-hyphens: auto;
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
@@ -103,25 +103,25 @@ https://share.traffy.in.th/* Adds a hyphen where the word breaks, if supported (
 .sign-state-start {
   background-color: #f6b900;
   color: #fff;
-https://share.traffy.in.th/* border: 1px solid #ffb42c;https://share.traffy.in.th/
+  /* border: 1px solid #ffb42c; */
 }
 
 .sign-state-inprogress {
   background-color: #ed2010;
   color: #fff;
-https://share.traffy.in.th/* border: 1px solid #0884dc;https://share.traffy.in.th/
+  /* border: 1px solid #0884dc; */
 }
 
 .sign-state-finish {
   background-color: #61d637;
   color: #fff;
-https://share.traffy.in.th/* border: 1px solid #58b42c;https://share.traffy.in.th/
+  /* border: 1px solid #58b42c; */
 }
 
 .sign-state-total {
   background-color: #5e5e5e;
   color: #fff;
-https://share.traffy.in.th/* border: 1px solid #f15f42;https://share.traffy.in.th/
+  /* border: 1px solid #f15f42; */
 }
 
 .margin-stat-state {

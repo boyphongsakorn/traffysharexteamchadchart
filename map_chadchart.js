@@ -116,7 +116,7 @@ jQuery(document).ready(function($) {
 
 async function searchPost(trendProblemtype=undefined) {
 
-    let url_geojson_hashtag = `${base_url_api}/geojson`
+    let url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson.json`
     let csv_url_dowload = `${base_url_api}/download`
     let url_api_json = `${base_url_api}/search`
 

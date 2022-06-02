@@ -142,7 +142,8 @@ async function searchPost(trendProblemtype=undefined) {
 
     if (filterDistrict != null) {
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
-        url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}district=${filterDistrict}`
+        //url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}district=${filterDistrict}`
+        url_geojson_hashtag = url_geojson_hashtag + _parameter_url_style + "district=" + filterDistrict
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}district=${filterDistrict}`
         url_api_json = `${url_api_json}${_parameter_url_style}district=${filterDistrict}`
      
@@ -151,7 +152,7 @@ async function searchPost(trendProblemtype=undefined) {
     if (filterSubDistrict != null) {
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
         //url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}subdistrict=${filterSubDistrict}`
-        url_geojson_hashtag = url_geojson_hashtag+`${_parameter_url_style}subdistrict=${filterSubDistrict}`
+        url_geojson_hashtag = url_geojson_hashtag+ _parameter_url_style + "subdistrict=" + filterSubDistrict
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}subdistrict=${filterSubDistrict}`
         url_api_json = `${url_api_json}${_parameter_url_style}subdistrict=${filterSubDistrict}`
     }

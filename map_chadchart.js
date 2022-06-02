@@ -998,15 +998,7 @@ async function getCategoryStat(_limit=100) {
                 borderColor: _color,
                 borderWidth: 0
             }]
-        },
-        options: {
-            indexAxis: 'x',
-            plugins: {
-                legend: {
-                  display: false
-                }
-            } //End plugins
-        }// End options
+        }
     });
 } //End getEventStat
 

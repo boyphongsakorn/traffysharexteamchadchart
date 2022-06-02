@@ -44,7 +44,7 @@ fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state=รอ�
         fs.writeFileSync('geojson_wait.json', JSON.stringify(json));
     })
 
-fetche('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state=ส่งเรื่องแล้ว')
+fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state=ส่งเรื่องแล้ว')
     .then(res => res.json())
     .then(json => {
         //remove duplicate json in json.features

@@ -964,6 +964,8 @@ async function getCategoryStat(_limit=100) {
     })
     let dataCategoryStat = await responseAPI.data
 
+    console.log(dataCategoryStat)
+
     let _labels = []
     let _data = []
     let _color = []

@@ -167,7 +167,9 @@ async function searchPost(trendProblemtype=undefined) {
                 url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson_send.json`
             }
         }else{
-            url_geojson_hashtag = `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}state=${filterState}`
+            if(_parameter_url_style == "?"){
+                url_geojson_hashtag = `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}state=${filterState}`
+            }
             if(filterDistrict != null){
                 url_geojson_hashtag = url_geojson_hashtag+`&district=${filterDistrict}`
             }
@@ -194,11 +196,14 @@ async function searchPost(trendProblemtype=undefined) {
     if (filterStartDate != null && filterEndDate != null) {
         console.log('2')
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
-        if(filterState != null){
+        if(_parameter_url_style == '&'){
+            url_geojson_hashtag = url_geojson_hashtag+`start=${filterStartDate}&end=${filterEndDate}`
+        }
+        /*if(filterState != null ){
             url_geojson_hashtag = url_geojson_hashtag + `&state=${filterState}`
         }else{
             url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
-        }
+        }*/
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         if(filterState != null){
             csv_url_dowload = csv_url_dowload + `&state=${filterState}`

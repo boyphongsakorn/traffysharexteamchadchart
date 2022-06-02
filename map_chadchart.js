@@ -1010,7 +1010,7 @@ async function getCategoryStat(_limit=100) {
         },
       };
 
-    Chart.Bar(unitStatChart, config);
+    new Chart(unitStatChart, config);
 
     /*new Chart(unitStatChart, {
         type: 'bar',

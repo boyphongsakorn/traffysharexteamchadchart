@@ -984,6 +984,9 @@ async function getCategoryStat(_limit=100) {
       chartStatus.destroy();
       console.log('test')
     }
+    console.log(_labels)
+    console.log(_data)
+    console.log(_color)
     new Chart(unitStatChart, {
         type: 'bar',
         data: {

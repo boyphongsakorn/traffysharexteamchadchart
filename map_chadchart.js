@@ -984,7 +984,35 @@ async function getCategoryStat(_limit=100) {
       chartStatus.destroy();
     }
 
-    new Chart(unitStatChart, {
+    const config = {
+        type: 'bar',
+        data: {
+            labels: _labels,
+            datasets: [{
+                label: '',
+                data: _data,
+                backgroundColor: _color,
+                borderColor: _color,
+                borderWidth: 1
+            }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Chart.js Bar Chart'
+            }
+          }
+        },
+      };
+
+    Chart.Bar(unitStatChart, config);
+
+    /*new Chart(unitStatChart, {
         type: 'bar',
         data: {
             labels: _labels,
@@ -1004,7 +1032,7 @@ async function getCategoryStat(_limit=100) {
                 }
             } //End plugins
         }// End options
-    });
+    });*/
 } //End getEventStat
 
 

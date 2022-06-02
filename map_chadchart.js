@@ -131,6 +131,13 @@ async function searchPost(trendProblemtype=undefined) {
         // console.log("else trendProblemtype")
     }
 
+    console.log(text_search)
+    console.log(filterDistrict)
+    console.log(filterSubDistrict)
+    console.log(filterStartDate)
+    console.log(filterEndDate)
+    console.log(filterState)
+
     if (text_search == "" && filterDistrict == null && filterSubDistrict == null && filterStartDate == null && filterEndDate == null && filterState == null) {
         url_geojson_hashtag = 'https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson.json'
     }

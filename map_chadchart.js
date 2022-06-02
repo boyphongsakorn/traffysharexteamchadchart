@@ -198,6 +198,8 @@ async function searchPost(trendProblemtype=undefined) {
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
         if(_parameter_url_style == '&'){
             url_geojson_hashtag = url_geojson_hashtag+`start=${filterStartDate}&end=${filterEndDate}`
+        }else{
+            url_geojson_hashtag = `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         }
         /*if(filterState != null ){
             url_geojson_hashtag = url_geojson_hashtag + `&state=${filterState}`

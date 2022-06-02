@@ -131,13 +131,6 @@ async function searchPost(trendProblemtype=undefined) {
         // console.log("else trendProblemtype")
     }
 
-    console.log(text_search)
-    console.log(filterDistrict)
-    console.log(filterSubDistrict)
-    console.log(filterStartDate)
-    console.log(filterEndDate)
-    console.log(filterState)
-
     if (text_search == "" && filterDistrict == null && filterSubDistrict == null && filterStartDate == null && filterEndDate == null && filterState == null) {
         url_geojson_hashtag = 'https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson.json'
     }
@@ -182,6 +175,8 @@ async function searchPost(trendProblemtype=undefined) {
         }else{
             if(_parameter_url_style == "?"){
                 url_geojson_hashtag = `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}state=${filterState}`
+            }else{
+                url_geojson_hashtag = `${url_geojson_hashtag}${_parameter_url_style}state=${filterState}`
             }
             /*if(filterDistrict != null){
                 url_geojson_hashtag = url_geojson_hashtag+`&district=${filterDistrict}`

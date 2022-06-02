@@ -960,7 +960,7 @@ function clickLiCategoryUnitStat(_type) {
 async function getCategoryStat(_limit=100) {
     let responseAPI =  await axios({
         method: 'get',
-        url:  `${base_url_api}/trend-all?limit=${_limit}`,
+        url:  `https://anywhere.pwisetthon.com/${base_url_api}/trend-all?limit=${_limit}`,
     })
     let dataCategoryStat = await responseAPI.data
 
@@ -975,7 +975,6 @@ async function getCategoryStat(_limit=100) {
         _labels.push(i.problemtype_name)
         _color.push(getColorProblemType(i.problemtype_name))
     });
-
 
     let unitStatChart = document.getElementById('categoryUnitStatChart').getContext('2d');
     let chartStatus = Chart.getChart("categoryUnitStatChart"); // <canvas> id

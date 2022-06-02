@@ -982,11 +982,8 @@ async function getCategoryStat(_limit=100) {
     let chartStatus = Chart.getChart("categoryUnitStatChart"); // <canvas> id
     if (chartStatus != undefined) {
       chartStatus.destroy();
-      console.log('test')
     }
-    console.log(_labels)
-    console.log(_data)
-    console.log(_color)
+
     new Chart(unitStatChart, {
         type: 'bar',
         data: {
@@ -994,11 +991,19 @@ async function getCategoryStat(_limit=100) {
             datasets: [{
                 label: '',
                 data: _data,
-                backgroundColor: _color,
-                borderColor: _color,
+                backgroundColor: '#FFFFFF',
+                borderColor: '#FFFFFF',
                 borderWidth: 0
             }]
-        }
+        },
+        options: {
+            indexAxis: 'x',
+            plugins: {
+                legend: {
+                  display: false
+                }
+            } //End plugins
+        }// End options
     });
 } //End getEventStat
 

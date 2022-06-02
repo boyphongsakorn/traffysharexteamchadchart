@@ -132,7 +132,7 @@ async function searchPost(trendProblemtype=undefined) {
     if (text_search != "ประเภท:ทั้งหมด") {
         if (text_search != ""){
             var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
-            url_geojson_hashtag =  `${url_geojson_hashtag}?text=${text_search}`
+            url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson?text=${text_search}`
             csv_url_dowload = `${csv_url_dowload}?text=${text_search}`
             url_api_json = `${url_api_json}?text=${text_search}`
         }
@@ -140,7 +140,7 @@ async function searchPost(trendProblemtype=undefined) {
 
     if (filterDistrict != null) {
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
-        url_geojson_hashtag =  `${url_geojson_hashtag}${_parameter_url_style}district=${filterDistrict}`
+        url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}district=${filterDistrict}`
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}district=${filterDistrict}`
         url_api_json = `${url_api_json}${_parameter_url_style}district=${filterDistrict}`
      
@@ -148,7 +148,7 @@ async function searchPost(trendProblemtype=undefined) {
 
     if (filterSubDistrict != null) {
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
-        url_geojson_hashtag =  `${url_geojson_hashtag}${_parameter_url_style}subdistrict=${filterSubDistrict}`
+        url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}subdistrict=${filterSubDistrict}`
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}subdistrict=${filterSubDistrict}`
         url_api_json = `${url_api_json}${_parameter_url_style}subdistrict=${filterSubDistrict}`
     }
@@ -171,7 +171,7 @@ url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysh
 
     if (filterEndDate != null) {
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
-        url_geojson_hashtag =  `${url_geojson_hashtag}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
+        url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         url_api_json = `${url_api_json}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         // console.log(`start=${filterStartDate}&end=${filterEndDate}`)
@@ -180,7 +180,7 @@ url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysh
 
     if (filterStartDate != null && filterEndDate != null) {
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
-        url_geojson_hashtag =  `${url_geojson_hashtag}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
+        url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         url_api_json = `${url_api_json}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         // console.log(`start=${filterStartDate}&end=${filterEndDate}`)

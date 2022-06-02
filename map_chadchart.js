@@ -155,7 +155,14 @@ async function searchPost(trendProblemtype=undefined) {
 
     if (filterState != null) {
         var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
-        url_geojson_hashtag =  `${url_geojson_hashtag}${_parameter_url_style}state=${filterState}`
+        //url_geojson_hashtag =  `${url_geojson_hashtag}${_parameter_url_style}state=${filterState}`
+        if(filterState == "เสร็จสิ้น"){
+            url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson_complete.json`
+        }else if(filterState == "รอรับเรื่อง"){
+            url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson_wait.json`
+        }else if(filterState == "ส่งเรื่องแล้ว"){
+url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson_send.json`
+        }
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}state=${filterState}`
         url_api_json = `${url_api_json}${_parameter_url_style}state=${filterState}`
     }

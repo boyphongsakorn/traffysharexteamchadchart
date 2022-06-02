@@ -25,3 +25,30 @@ fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson')
         json.features = json.features.filter(unique);
         fs.writeFileSync('geojson.json', JSON.stringify(json));
     })
+
+fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state=เสร็จสิ้น')
+    .then(res => res.json())
+    .then(json => {
+        //remove duplicate json in json.features
+        const unique = (value, index, self) => self.indexOf(value) === index;
+        json.features = json.features.filter(unique);
+        fs.writeFileSync('geojson_complete.json', JSON.stringify(json));
+    })
+
+fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state=รอรับเรื่อง')
+    .then(res => res.json())
+    .then(json => {
+        //remove duplicate json in json.features
+        const unique = (value, index, self) => self.indexOf(value) === index;
+        json.features = json.features.filter(unique);
+        fs.writeFileSync('geojson_wait.json', JSON.stringify(json));
+    })
+
+fetche('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state=ส่งเรื่องแล้ว')
+    .then(res => res.json())
+    .then(json => {
+        //remove duplicate json in json.features
+        const unique = (value, index, self) => self.indexOf(value) === index;
+        json.features = json.features.filter(unique);
+        fs.writeFileSync('geojson_send.json', JSON.stringify(json));
+    })

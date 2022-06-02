@@ -209,9 +209,9 @@ async function searchPost(trendProblemtype=undefined) {
         //}else{
         //    url_geojson_hashtag = `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         //}
-        /*if(filterState != null ){
+        if(filterState != null ){
             url_geojson_hashtag = url_geojson_hashtag + `&state=${filterState}`
-        }else{
+        }/*else{
             url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`
         }*/
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}start=${filterStartDate}&end=${filterEndDate}`

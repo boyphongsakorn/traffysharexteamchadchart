@@ -118,7 +118,7 @@ jQuery(document).ready(function($) {
 
 async function searchPost(trendProblemtype=undefined) {
 
-    let url_geojson_hashtag = `https://raw.githubusercontent.com/boyphongsakorn/traffysharexteamchadchart/main/geojson.json`
+    let url_geojson_hashtag = `${base_url_api}/geojson`
     let csv_url_dowload = `${base_url_api}/download`
     let url_api_json = `${base_url_api}/search`
 
@@ -134,7 +134,7 @@ async function searchPost(trendProblemtype=undefined) {
     if (text_search != "ประเภท:ทั้งหมด") {
         if (text_search != ""){
             var _parameter_url_style = url_geojson_hashtag.includes("?") ? '&' : '?';
-            url_geojson_hashtag =  `https://publicapi.traffy.in.th/share/teamchadchart/geojson?text=${text_search}`
+            url_geojson_hashtag =  `${url_geojson_hashtag}?text=${text_search}`
             csv_url_dowload = `${csv_url_dowload}?text=${text_search}`
             url_api_json = `${url_api_json}?text=${text_search}`
         }
@@ -172,12 +172,12 @@ async function searchPost(trendProblemtype=undefined) {
             if(_parameter_url_style == "?"){
                 url_geojson_hashtag = `https://publicapi.traffy.in.th/share/teamchadchart/geojson${_parameter_url_style}state=${filterState}`
             }
-            if(filterDistrict != null){
+            /*if(filterDistrict != null){
                 url_geojson_hashtag = url_geojson_hashtag+`&district=${filterDistrict}`
             }
             if(filterSubDistrict != null){
                 url_geojson_hashtag = url_geojson_hashtag+`&subdistrict=${filterSubDistrict}`
-            }
+            }*/
         }
         csv_url_dowload = `${csv_url_dowload}${_parameter_url_style}state=${filterState}`
         url_api_json = `${url_api_json}${_parameter_url_style}state=${filterState}`

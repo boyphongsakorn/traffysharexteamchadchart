@@ -143,7 +143,7 @@ jQuery(document).ready(function ($) {
         var myOffcanvasWidth = $(myOffcanvas).width();
         anime({
             targets: '#map',
-            duration: 1500,
+            duration: 500,
             translateX: myOffcanvasWidth,
             easing: 'easeInOutExpo',
             complete: function(anim) {
@@ -154,7 +154,7 @@ jQuery(document).ready(function ($) {
         })
         anime({
             targets: '#navbar',
-            duration: 1500,
+            duration: 500,
             translateX: myOffcanvasWidth,
             easing: 'easeInOutExpo',
             complete: function(anim) {
@@ -174,7 +174,7 @@ jQuery(document).ready(function ($) {
         //reset left of navbar and map to 0
         anime({
             targets: '#map',
-            duration: 1500,
+            duration: 500,
             translateX: 0,
             easing: 'easeInOutExpo',
             complete: function(anim) {
@@ -185,7 +185,7 @@ jQuery(document).ready(function ($) {
         })
         anime({
             targets: '#navbar',
-            duration: 1500,
+            duration: 500,
             translateX: 0,
             easing: 'easeInOutExpo',
             complete: function(anim) {

@@ -94,7 +94,7 @@ jQuery(document).ready(function ($) {
     //get height from navber
     let navbarHeight = $('#navbar').height();
     //height of map = height - navbar
-    let mapHeight = height - navbarHeight;
+    let mapHeight = docHeight - navbarHeight;
     $('#map').css('height', mapHeight);
     //document.getElementById('map').style.setProperty('height', mapHeight + 'px', "important");
 

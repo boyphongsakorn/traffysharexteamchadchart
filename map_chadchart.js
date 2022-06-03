@@ -90,7 +90,11 @@ function initMap() {
 
 jQuery(document).ready(function ($) {
     let height = screen.height;
-    document.getElementById("map").style.height = `${height}px`;
+    //get height from navber
+    let navbarHeight = $('#navbar').height();
+    //height of map = height - navbar
+    let mapHeight = height - navbarHeight;
+    $('#map').css('height', mapHeight);
 
     $('#rangeDatepicker').daterangepicker({
         autoUpdateInput: false,

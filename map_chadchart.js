@@ -145,7 +145,7 @@ jQuery(document).ready(function ($) {
         $('#navbar').css('left', myOffcanvasWidth);
         $('#map').css('left', myOffcanvasWidth);
         //set width of map to Width of map - myOffcanvasWidth
-        document.getElementById('map').style.setProperty('width', (window.innerWidth - myOffcanvasWidth) + 'px', "important");
+        document.getElementById('map').setAttribute('style', 'width: calc(100% - ' + myOffcanvasWidth + 'px)');
         //set width of navbar to Width of navbar - myOffcanvasWidth
         $('#navbar').css('width', 'calc(100% - ' + myOffcanvasWidth + 'px)');
     })

@@ -88,6 +88,18 @@ function initMap() {
 
 }
 
+function reportWindowSize() {
+    //get height of window
+    var windowHeight = $(window).height();
+    //get height from navber
+    let navbarHeight = $('#navbar').height();
+    //height of map = height - navbar
+    let mapHeight = windowHeight - navbarHeight;
+    $('#map').css('height', mapHeight);
+}
+
+window.addEventListener('resize', reportWindowSize);
+
 jQuery(document).ready(function ($) {
     //get height of window
     var windowHeight = $(window).height();

@@ -146,8 +146,8 @@ jQuery(document).ready(function ($) {
         $('#map').css('left', myOffcanvasWidth);
         //set width of navbar to Width of navbar - myOffcanvasWidth
         $('#navbar').css('width', 'calc(100% - ' + myOffcanvasWidth + 'px)');
-        //set width of map to Width of map - myOffcanvasWidth
-        $('#map').css('width', 'calc(100% - ' + myOffcanvasWidth + 'px)');
+        //set width of map to Width of map - myOffcanvasWidth with important
+        $('#map').css('width', 'calc(100% - ' + myOffcanvasWidth + 'px !important)');
     })
 
     myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {

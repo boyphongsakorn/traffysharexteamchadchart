@@ -142,7 +142,7 @@ jQuery(document).ready(function ($) {
         //get myOffcanvas width
         var myOffcanvasWidth = $(myOffcanvas).width();
         anime({
-            targets: '#loadingdiv',
+            targets: '#navbar #map',
             duration: 1500,
             translateX: myOffcanvasWidth,
             easing: 'easeInOutExpo',

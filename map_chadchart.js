@@ -89,7 +89,8 @@ function initMap() {
 }
 
 jQuery(document).ready(function ($) {
-    let height = screen.height;
+    //get document height
+    var docHeight = $(document).height();
     //get height from navber
     let navbarHeight = $('#navbar').height();
     //height of map = height - navbar

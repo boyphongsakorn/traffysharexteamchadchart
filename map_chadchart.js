@@ -141,11 +141,11 @@ jQuery(document).ready(function ($) {
         //alert('show');
         //get myOffcanvas width
         var myOffcanvasWidth = $(myOffcanvas).width();
+        document.getElementById('map').setAttribute('style', 'top: 55px !important; overflow: hidden;width: calc(100% - ' + myOffcanvasWidth + 'px)');
         //set left of navbar and map to myOffcanvasWidth
         $('#navbar').css('left', myOffcanvasWidth);
         $('#map').css('left', myOffcanvasWidth);
         //set width of map to Width of map - myOffcanvasWidth
-        document.getElementById('map').setAttribute('style', 'width: calc(100% - ' + myOffcanvasWidth + 'px)');
         //set width of navbar to Width of navbar - myOffcanvasWidth
         $('#navbar').css('width', 'calc(100% - ' + myOffcanvasWidth + 'px)');
     })

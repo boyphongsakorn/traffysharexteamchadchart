@@ -169,7 +169,7 @@ jQuery(document).ready(function ($) {
         $('#navbar').css('width', 'calc(100% - ' + myOffcanvasWidth + 'px)');
     })
 
-    myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
+    myOffcanvas.addEventListener('hide.bs.offcanvas', event => {
         //alert('hidden');
         //reset left of navbar and map to 0
         anime({

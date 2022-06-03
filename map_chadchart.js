@@ -89,8 +89,7 @@ function initMap() {
 }
 
 const myOffcanvas = document.getElementById('offcanvasScrolling');
-myOffcanvas.addEventListener('shown.bs.offcanvas', event => {
-    console.log('shown.bs.offcanvas');
+myOffcanvas.addEventListener('show.bs.offcanvas', event => {
     //get myOffcanvas width
     var myOffcanvasWidth = $(myOffcanvas).width();
     //set left of navbar and map to myOffcanvasWidth

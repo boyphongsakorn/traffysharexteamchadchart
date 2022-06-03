@@ -93,7 +93,8 @@ jQuery(document).ready(function ($) {
         autoUpdateInput: false,
         locale: {
             cancelLabel: 'Clear'
-        }
+        },
+        drops: 'up'
     });
 
     $('#rangeDatepicker').on('apply.daterangepicker', function (ev, picker) {

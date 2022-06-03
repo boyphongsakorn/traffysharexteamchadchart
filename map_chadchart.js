@@ -89,6 +89,9 @@ function initMap() {
 }
 
 jQuery(document).ready(function ($) {
+    let height = screen.height;
+    document.getElementById("map").style.height = `${height}px`;
+
     $('#rangeDatepicker').daterangepicker({
         autoUpdateInput: false,
         locale: {

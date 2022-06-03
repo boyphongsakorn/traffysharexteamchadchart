@@ -88,23 +88,6 @@ function initMap() {
 
 }
 
-const myOffcanvas = document.getElementById('offcanvasScrolling');
-myOffcanvas.addEventListener('show.bs.offcanvas', event => {
-    alert('show');
-    //get myOffcanvas width
-    var myOffcanvasWidth = $(myOffcanvas).width();
-    //set left of navbar and map to myOffcanvasWidth
-    $('#navbar').css('left', myOffcanvasWidth);
-    $('#map').css('left', myOffcanvasWidth);
-})
-
-myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
-    alert('hidden');
-    //reset left of navbar and map to 0
-    $('#navbar').css('left', 0);
-    $('#map').css('left', 0);
-})
-
 function reportWindowSize() {
     //get height of window
     var windowHeight = $(window).height();
@@ -152,6 +135,23 @@ jQuery(document).ready(function ($) {
 
         searchPost()
     });
+
+    const myOffcanvas = document.getElementById('offcanvasScrolling');
+    myOffcanvas.addEventListener('show.bs.offcanvas', event => {
+        alert('show');
+        //get myOffcanvas width
+        var myOffcanvasWidth = $(myOffcanvas).width();
+        //set left of navbar and map to myOffcanvasWidth
+        $('#navbar').css('left', myOffcanvasWidth);
+        $('#map').css('left', myOffcanvasWidth);
+    })
+
+    myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
+        alert('hidden');
+        //reset left of navbar and map to 0
+        $('#navbar').css('left', 0);
+        $('#map').css('left', 0);
+    })
 });
 
 

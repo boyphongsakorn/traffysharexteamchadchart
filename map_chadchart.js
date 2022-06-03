@@ -138,7 +138,7 @@ jQuery(document).ready(function ($) {
 
     const myOffcanvas = document.getElementById('offcanvasScrolling');
     myOffcanvas.addEventListener('show.bs.offcanvas', event => {
-        alert('show');
+        //alert('show');
         //get myOffcanvas width
         var myOffcanvasWidth = $(myOffcanvas).width();
         //set left of navbar and map to myOffcanvasWidth
@@ -147,7 +147,7 @@ jQuery(document).ready(function ($) {
     })
 
     myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
-        alert('hidden');
+        //alert('hidden');
         //reset left of navbar and map to 0
         $('#navbar').css('left', 0);
         $('#map').css('left', 0);

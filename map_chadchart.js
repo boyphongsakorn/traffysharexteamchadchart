@@ -148,8 +148,19 @@ jQuery(document).ready(function ($) {
             easing: 'easeInOutExpo',
             complete: function(anim) {
                 //set left of navbar and map to myOffcanvasWidth
-                $('#navbar').css('left', myOffcanvasWidth);
-                $('#map').css('left', myOffcanvasWidth);
+                //$('#navbar').css('left', myOffcanvasWidth);
+                //$('#map').css('left', myOffcanvasWidth);
+            }
+        })
+        anime({
+            targets: '#navbar',
+            duration: 1500,
+            translateX: myOffcanvasWidth,
+            easing: 'easeInOutExpo',
+            complete: function(anim) {
+                //set left of navbar and map to myOffcanvasWidth
+                //$('#navbar').css('left', myOffcanvasWidth);
+                //$('#map').css('left', myOffcanvasWidth);
             }
         })
         document.getElementById('map').setAttribute('style', 'top: 55px !important; overflow: hidden;width: calc(100% - ' + myOffcanvasWidth + 'px)');
@@ -161,8 +172,28 @@ jQuery(document).ready(function ($) {
     myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
         //alert('hidden');
         //reset left of navbar and map to 0
-        $('#navbar').css('left', 0);
-        $('#map').css('left', 0);
+        anime({
+            targets: '#map',
+            duration: 1500,
+            translateX: 0,
+            easing: 'easeInOutExpo',
+            complete: function(anim) {
+                //set left of navbar and map to myOffcanvasWidth
+                //$('#navbar').css('left', myOffcanvasWidth);
+                //$('#map').css('left', myOffcanvasWidth);
+            }
+        })
+        anime({
+            targets: '#navbar',
+            duration: 1500,
+            translateX: 0,
+            easing: 'easeInOutExpo',
+            complete: function(anim) {
+                //set left of navbar and map to myOffcanvasWidth
+                //$('#navbar').css('left', myOffcanvasWidth);
+                //$('#map').css('left', myOffcanvasWidth);
+            }
+        })
         //reset width of navbar and map to 100%
         $('#map').css('width', '100%');
         $('#navbar').css('width', '100%');

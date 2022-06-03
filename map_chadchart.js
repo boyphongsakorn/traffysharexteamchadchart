@@ -167,6 +167,7 @@ jQuery(document).ready(function ($) {
         //set width of map to Width of map - myOffcanvasWidth
         //set width of navbar to Width of navbar - myOffcanvasWidth
         $('#navbar').css('width', 'calc(100% - ' + myOffcanvasWidth + 'px)');
+        reportWindowSize()
     })
 
     myOffcanvas.addEventListener('hide.bs.offcanvas', event => {
@@ -197,6 +198,7 @@ jQuery(document).ready(function ($) {
         //reset width of navbar and map to 100%
         $('#map').css('width', '100%');
         $('#navbar').css('width', '100%');
+        reportWindowSize()
     })
 });
 

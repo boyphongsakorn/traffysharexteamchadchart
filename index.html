@@ -65,22 +65,22 @@
       <div class="offcanvas-body">
         <h6 class="offcanvas-title" id="offcanvasScrollingLabel">สรุปสถิติการแจ้งปัญหาเส้นเลือดฝอย</h6>
         <div class="d-flex" style="padding: 2px; font-size: 16px; font-weight: bold;">
-          <div class="p-2 flex-fill sign-state-start margin-stat-state" align="center" onclick="document.getElementById('select-marker-type').value = 'รอรับเรื่อง'" style="cursor: pointer;">
+          <div class="p-2 flex-fill sign-state-start margin-stat-state" align="center" onclick="document.getElementById('select-marker-type').value = 'รอรับเรื่อง';signSelectState('รอรับเรื่อง')" style="cursor: pointer;">
             <div>รอรับเรื่อง<br><br><br></div>
               <h4 id="stat-start"></h4>
             </div>
-            <div class="p-2 flex-fill sign-state-inprogress margin-stat-state" align="center" onclick="document.getElementById('select-marker-type').value = 'ส่งเรื่องแล้ว'" style="cursor: pointer;">
+            <div class="p-2 flex-fill sign-state-inprogress margin-stat-state" align="center" onclick="document.getElementById('select-marker-type').value = 'ส่งเรื่องแล้ว';signSelectState('ส่งเรื่องแล้ว')" style="cursor: pointer;">
               <div>ส่งเรื่องให้หน่วย<br>งานที่เกี่ยวข้อง<br><br></div>
                 <h4 id="stat-inprogress"></h4>
               
             </div>
-            <div class="p-2 flex-fill sign-state-finish margin-stat-state" align="center" onclick="document.getElementById('select-marker-type').value = 'เสร็จสิ้น'" style="cursor: pointer;">
+            <div class="p-2 flex-fill sign-state-finish margin-stat-state" align="center" onclick="document.getElementById('select-marker-type').value = 'เสร็จสิ้น';signSelectState('เสร็จสิ้น')" style="cursor: pointer;">
               <div>เสร็จสิ้น<br><br><br></div>
                 <h4 id="stat-finish"></h4>
             </div>
         </div>
         <!-- end stat state -->
-        <div class="p-2 flex-fill sign-state-total margin-stat-state" style="font-size: 16px; font-weight: bold;cursor: pointer;" align="center" onclick="document.getElementById('select-marker-type').value = 'all'">
+        <div class="p-2 flex-fill sign-state-total margin-stat-state" style="font-size: 16px; font-weight: bold;cursor: pointer;" align="center" onclick="document.getElementById('select-marker-type').value = 'all';signSelectState('all')">
           <div>ทั้งหมด<br></div>
             <h4 id="stat-total" style="margin: 2px;"></h4>
           <div>เรื่อง</div></div>

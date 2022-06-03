@@ -157,7 +157,7 @@ jQuery(document).ready(function ($) {
         $('#map').css('left', 0);
         //reset width of navbar and map to 100%
         $('#navbar').css('width', '100%');
-        //$('#map').css('width', '100%');
+        $('#map').css('width', '100%');
     })
 });
 

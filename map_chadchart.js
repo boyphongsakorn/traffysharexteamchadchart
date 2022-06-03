@@ -89,12 +89,12 @@ function initMap() {
 }
 
 jQuery(document).ready(function ($) {
-    //get document height
-    var docHeight = $(document).height();
+    //get height of window
+    var windowHeight = $(window).height();
     //get height from navber
     let navbarHeight = $('#navbar').height();
     //height of map = height - navbar
-    let mapHeight = docHeight - navbarHeight;
+    let mapHeight = windowHeight - navbarHeight;
     $('#map').css('height', mapHeight);
     //document.getElementById('map').style.setProperty('height', mapHeight + 'px', "important");
 

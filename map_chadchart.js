@@ -144,10 +144,10 @@ jQuery(document).ready(function ($) {
         //set left of navbar and map to myOffcanvasWidth
         $('#navbar').css('left', myOffcanvasWidth);
         $('#map').css('left', myOffcanvasWidth);
-        //set width of navbar to Width of navbar - myOffcanvasWidth
-        $('#navbar').css('width', 'calc(100% - ' + myOffcanvasWidth + 'px)');
         //set width of map to Width of map - myOffcanvasWidth
         $('#map').css('width', 'calc(100% - ' + myOffcanvasWidth + 'px) !important');
+        //set width of navbar to Width of navbar - myOffcanvasWidth
+        $('#navbar').css('width', 'calc(100% - ' + myOffcanvasWidth + 'px)');
     })
 
     myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
@@ -156,8 +156,8 @@ jQuery(document).ready(function ($) {
         $('#navbar').css('left', 0);
         $('#map').css('left', 0);
         //reset width of navbar and map to 100%
-        $('#navbar').css('width', '100%');
         $('#map').css('width', '100%');
+        $('#navbar').css('width', '100%');
     })
 });
 

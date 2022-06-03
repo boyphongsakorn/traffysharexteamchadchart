@@ -330,6 +330,20 @@ async function searchPost(trendProblemtype = undefined) {
         setHeatMap(dataResultesFeatures)
     }
 
+    //if responseAPI.data.total = 0
+    if (responseAPI.data.total == 0) {
+        //id toasttitle intertext = "ไม่พบข้อมูล"
+        $('#toasttitle').text("ไม่พบข้อมูล")
+        //if filterDistrict == null then change text id toastbody intertext = "เขต " filterDistrict "ไม่พบข้อมูล"
+        if (filterDistrict == null) {
+            $('#toastbody').text("ไม่พบข้อมูล")
+        } else {
+            $('#toastbody').text("เขต " + filterDistrict + " ไม่พบข้อมูล")
+        }
+        const toastLiveExample = document.getElementById('liveToast')
+        const toast = new bootstrap.Toast(toastLiveExample)
+        toast.show()
+    }
 
     //ใส่ data เข้าตารางแสดงการค้นหา    
     let text_results_search = `ผลลัพธ์ ${responseAPI.data.total} รายการ  <a href="${csv_url_dowload}" class="badge rounded-pill" style="background-color: #201c51;">csv</a>`

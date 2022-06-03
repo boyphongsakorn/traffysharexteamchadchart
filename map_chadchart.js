@@ -94,7 +94,7 @@ jQuery(document).ready(function ($) {
     let navbarHeight = $('#navbar').height();
     //height of map = height - navbar
     let mapHeight = height - navbarHeight;
-    document.getElementById('map').style.height = mapHeight + 'px';
+    document.getElementById('map').style.setProperty('height', mapHeight + 'px', "important");
 
     $('#rangeDatepicker').daterangepicker({
         autoUpdateInput: false,

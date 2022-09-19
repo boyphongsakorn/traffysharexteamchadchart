@@ -26,7 +26,7 @@ fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson')
         fs.writeFileSync('geojson.json', JSON.stringify(json));
     })
 
-fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state=เสร็จสิ้น')
+fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state_type=finish')
     .then(res => res.json())
     .then(json => {
         //remove duplicate json in json.features
@@ -35,7 +35,7 @@ fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state=เส�
         fs.writeFileSync('geojson_complete.json', JSON.stringify(json));
     })
 
-fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state=รอรับเรื่อง')
+fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state_type=start')
     .then(res => res.json())
     .then(json => {
         //remove duplicate json in json.features
@@ -44,7 +44,7 @@ fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state=รอ�
         fs.writeFileSync('geojson_wait.json', JSON.stringify(json));
     })
 
-fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state=ส่งเรื่องแล้ว')
+fetch('https://publicapi.traffy.in.th/share/teamchadchart/geojson?state_type=inprogress')
     .then(res => res.json())
     .then(json => {
         //remove duplicate json in json.features
